@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+# API Keys and secrets
+.env
+*.key
+*_api_key.txt
+
+# Downloaded models (too large for git)
+lora_tutorial/models/
+*.nemo
+
+# Workshop outputs
+lora_tutorial/experiments/
+nim_cache/
+sample_outputs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# NGC CLI downloads
+ngccli_linux.zip
+
+# Docker
+.docker/
+
+# OS files
+.DS_Store
+Thumbs.db 
+
+# NeMo repository (should be cloned by users)
+NeMo/ 

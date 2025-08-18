@@ -24,6 +24,8 @@ nvaitc-aps-project-demos/
 │   ├── progo-protein-evaluation-tm-plddt/ # Protein structure prediction and evaluation
 │   ├── explorer-ai/                     # Curiosity-driven AI agent platform
 │   └── resume-evaluator-ai/             # Intelligent resume screening platform
+├── workshops/                            # Workshop materials and tutorials
+│   └── NIM-build-tune-deploy/           # NVIDIA NIM workshop for building, tuning, and deploying models
 ├── .gitignore                            # Git ignore file
 └── README.md                             # This file
 ```
@@ -34,6 +36,17 @@ nvaitc-aps-project-demos/
 - **ProGo Protein Evaluation (TM-PLDDT)**: Comprehensive protein structure prediction and evaluation pipeline using ESMFold (NIM) integration and advanced structural similarity analysis
 - **Explorer AI**: Curiosity-driven agent platform demonstrating ReAct architecture with web search integration and persistent memory using NIMs
 - **Resume Evaluator AI**: Full-stack application for intelligent resume screening and candidate evaluation, leveraging Llama 3.1 405B model running on NIMs for HR automation
+
+## Workshops
+
+The workshops folder contains hands-on tutorials and training materials for learning NVIDIA technologies:
+
+- **NIM-build-tune-deploy**: Comprehensive workshop covering NVIDIA NIM (NVIDIA Inference Microservices) deployment, including:
+  - Workshop setup and environment configuration
+  - NIM API tutorials
+  - Local NIM deployment
+  - LoRA training with NeMo
+  - Deploying LoRA models with NIM
 
 ## Support
 
