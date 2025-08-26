@@ -13,6 +13,7 @@ Explorer AI is an interactive web-based platform that demonstrates advanced AI a
 - **Educational Playbook**: Jupyter notebook demonstrating core concepts step-by-step
 
 ## 🏗️ Architecture
+<img width="841" height="405" alt="explorer-ai-architecture" src="https://github.com/user-attachments/assets/ad9fdeac-4936-4e06-9ce0-6cd266190031" />
 
 ### Core Components
 
@@ -75,6 +76,7 @@ python curiosity.py
 6. **Access the interface**:
    - Open your browser to `http://localhost:5001`
    - Start asking questions and exploring!
+<img width="1415" height="792" alt="explorer-ai-application" src="https://github.com/user-attachments/assets/4be4cbac-6a63-4368-bd55-687daefdd447" />
 
 ## 🔧 Configuration
 
@@ -213,6 +215,9 @@ Project By:
 Jewel Aw (NVIDIA Student Ambassador), Darren Tan (NVIDIA), Aik Beng Ng (NVIDIA), Simon See (NVIDIA).
 
 An NVAITC APS project (NVIDIA).
+
+## Updates
+- 26/8/2025 by Jewel Aw: Updating README with pictures
 
 ## 📄 License
 
