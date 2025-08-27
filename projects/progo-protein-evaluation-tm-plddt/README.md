@@ -463,7 +463,7 @@ These binaries are automatically detected and used based on your system architec
 ## Contributing
 
 Project By:
-Darren Tan (NVIDIA), Ian McLoughlin (SIT), Aik Beng Ng (NVIDIA), Daniel Wang Zhengkui (SIT), Simon See (NVIDIA)
+Darren Tan (NVIDIA), Ian McLoughlin (SIT), Aik Beng Ng (NVIDIA), Daniel Wang Zhengkui (SIT), Abraham Stern (NVIDIA), Simon See (NVIDIA)
 
 An NVIDIA AI Technology Centre, Asia Pacific South (NVAITC APS) project.
 
