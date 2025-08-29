@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import base64
 import copy
 import json
@@ -40,7 +43,6 @@ else:
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=4, max=10),
@@ -81,7 +83,6 @@ async def openai_complete_if_cache(
         content = content.encode("utf-8").decode("unicode_escape")
 
     return content
-
 
 @retry(
     stop=stop_after_attempt(3),
@@ -125,10 +126,8 @@ async def azure_openai_complete_if_cache(
 
     return content
 
-
 class BedrockError(Exception):
     """Generic error for issues related to Amazon Bedrock"""
-
 
 @retry(
     stop=stop_after_attempt(5),
@@ -197,7 +196,6 @@ async def bedrock_complete_if_cache(
 
     return response["output"]["message"]["content"][0]["text"]
 
-
 @lru_cache(maxsize=1)
 def initialize_hf_model(model_name):
     hf_tokenizer = AutoTokenizer.from_pretrained(
@@ -210,7 +208,6 @@ def initialize_hf_model(model_name):
         hf_tokenizer.pad_token = hf_tokenizer.eos_token
 
     return hf_model, hf_tokenizer
-
 
 @retry(
     stop=stop_after_attempt(3),
@@ -278,7 +275,6 @@ async def hf_model_if_cache(
 
     return response_text
 
-
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=4, max=10),
@@ -316,7 +312,6 @@ async def ollama_model_if_cache(
     else:
         return response["message"]["content"]
 
-
 @lru_cache(maxsize=1)
 def initialize_lmdeploy_pipeline(
     model,
@@ -339,7 +334,6 @@ def initialize_lmdeploy_pipeline(
         log_level="WARNING",
     )
     return lmdeploy_pipe
-
 
 @retry(
     stop=stop_after_attempt(3),
@@ -441,11 +435,9 @@ async def lmdeploy_model_if_cache(
         response += res.response
     return response
 
-
 class GPTKeywordExtractionFormat(BaseModel):
     high_level_keywords: List[str]
     low_level_keywords: List[str]
-
 
 async def gpt_4o_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
@@ -461,7 +453,6 @@ async def gpt_4o_complete(
         **kwargs,
     )
 
-
 async def gpt_4o_mini_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
 ) -> str:
@@ -475,7 +466,6 @@ async def gpt_4o_mini_complete(
         history_messages=history_messages,
         **kwargs,
     )
-
 
 async def nvidia_openai_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
@@ -494,7 +484,6 @@ async def nvidia_openai_complete(
         return locate_json_string_body_from_string(result)
     return result
 
-
 async def azure_openai_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
 ) -> str:
@@ -510,7 +499,6 @@ async def azure_openai_complete(
         return locate_json_string_body_from_string(result)
     return result
 
-
 async def bedrock_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
 ) -> str:
@@ -525,7 +513,6 @@ async def bedrock_complete(
     if keyword_extraction:  # TODO: use JSON API
         return locate_json_string_body_from_string(result)
     return result
-
 
 async def hf_model_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
@@ -543,7 +530,6 @@ async def hf_model_complete(
         return locate_json_string_body_from_string(result)
     return result
 
-
 async def ollama_model_complete(
     prompt, system_prompt=None, history_messages=[], keyword_extraction=False, **kwargs
 ) -> Union[str, AsyncIterator[str]]:
@@ -558,7 +544,6 @@ async def ollama_model_complete(
         history_messages=history_messages,
         **kwargs,
     )
-
 
 @wrap_embedding_func_with_attrs(embedding_dim=1536, max_token_size=8192)
 @retry(
@@ -583,14 +568,12 @@ async def openai_embedding(
     )
     return np.array([dp.embedding for dp in response.data])
 
-
 async def fetch_data(url, headers, data):
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=headers, json=data) as response:
             response_json = await response.json()
             data_list = response_json.get("data", [])
             return data_list
-
 
 async def jina_embedding(
     texts: list[str],
@@ -616,7 +599,6 @@ async def jina_embedding(
     }
     data_list = await fetch_data(url, headers, data)
     return np.array([dp["embedding"] for dp in data_list])
-
 
 @wrap_embedding_func_with_attrs(embedding_dim=2048, max_token_size=512)
 @retry(
@@ -648,7 +630,6 @@ async def nvidia_openai_embedding(
     )
     return np.array([dp.embedding for dp in response.data])
 
-
 @wrap_embedding_func_with_attrs(embedding_dim=1536, max_token_size=8191)
 @retry(
     stop=stop_after_attempt(3),
@@ -679,7 +660,6 @@ async def azure_openai_embedding(
         model=model, input=texts, encoding_format="float"
     )
     return np.array([dp.embedding for dp in response.data])
-
 
 @retry(
     stop=stop_after_attempt(3),
@@ -717,7 +697,6 @@ async def siliconcloud_embedding(
         float_array = struct.unpack("<" + "f" * n, decode_bytes)
         embeddings.append(float_array)
     return np.array(embeddings)
-
 
 # @wrap_embedding_func_with_attrs(embedding_dim=1024, max_token_size=8192)
 # @retry(
@@ -790,7 +769,6 @@ async def bedrock_embedding(
 
         return np.array(embed_texts)
 
-
 async def hf_embedding(texts: list[str], tokenizer, embed_model) -> np.ndarray:
     device = next(embed_model.parameters()).device
     input_ids = tokenizer(
@@ -804,7 +782,6 @@ async def hf_embedding(texts: list[str], tokenizer, embed_model) -> np.ndarray:
     else:
         return embeddings.detach().cpu().numpy()
 
-
 async def ollama_embedding(texts: list[str], embed_model, **kwargs) -> np.ndarray:
     """
     Deprecated in favor of `embed`.
@@ -817,12 +794,10 @@ async def ollama_embedding(texts: list[str], embed_model, **kwargs) -> np.ndarra
 
     return embed_text
 
-
 async def ollama_embed(texts: list[str], embed_model, **kwargs) -> np.ndarray:
     ollama_client = ollama.Client(**kwargs)
     data = ollama_client.embed(model=embed_model, input=texts)
     return data["embeddings"]
-
 
 class Model(BaseModel):
     """
@@ -852,7 +827,6 @@ class Model(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True
-
 
 class MultiModel:
     """
@@ -901,7 +875,6 @@ class MultiModel:
         )
 
         return await next_model.gen_func(**args)
-
 
 if __name__ == "__main__":
     import asyncio

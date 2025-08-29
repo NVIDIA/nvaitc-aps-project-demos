@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 import html
 import io
@@ -21,7 +24,6 @@ ENCODER = None
 
 logger = logging.getLogger("lightrag")
 
-
 def set_logger(log_file: str):
     logger.setLevel(logging.DEBUG)
 
@@ -36,7 +38,6 @@ def set_logger(log_file: str):
     if not logger.handlers:
         logger.addHandler(file_handler)
 
-
 @dataclass
 class EmbeddingFunc:
     embedding_dim: int
@@ -45,7 +46,6 @@ class EmbeddingFunc:
 
     async def __call__(self, *args, **kwargs) -> np.ndarray:
         return await self.func(*args, **kwargs)
-
 
 def locate_json_string_body_from_string(content: str) -> Union[str, None]:
     """Locate the JSON string body from a string"""
@@ -72,7 +72,6 @@ def locate_json_string_body_from_string(content: str) -> Union[str, None]:
 
         return None
 
-
 def convert_response_to_json(response: str) -> dict:
     json_str = locate_json_string_body_from_string(response)
     assert json_str is not None, f"Unable to parse JSON from response: {response}"
@@ -83,14 +82,11 @@ def convert_response_to_json(response: str) -> dict:
         logger.error(f"Failed to parse JSON: {json_str}")
         raise e from None
 
-
 def compute_args_hash(*args):
     return md5(str(args).encode()).hexdigest()
 
-
 def compute_mdhash_id(content, prefix: str = ""):
     return prefix + md5(content.encode()).hexdigest()
-
 
 def limit_async_func_call(max_size: int, waitting_time: float = 0.0001):
     """Add restriction of maximum async calling times for a async func"""
@@ -113,7 +109,6 @@ def limit_async_func_call(max_size: int, waitting_time: float = 0.0001):
 
     return final_decro
 
-
 def wrap_embedding_func_with_attrs(**kwargs):
     """Wrap a function with attributes"""
 
@@ -123,18 +118,15 @@ def wrap_embedding_func_with_attrs(**kwargs):
 
     return final_decro
 
-
 def load_json(file_name):
     if not os.path.exists(file_name):
         return None
     with open(file_name, encoding="utf-8") as f:
         return json.load(f)
 
-
 def write_json(json_obj, file_name):
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(json_obj, f, indent=2, ensure_ascii=False)
-
 
 def encode_string_by_tiktoken(content: str, model_name: str = "gpt-4o"):
     global ENCODER
@@ -143,7 +135,6 @@ def encode_string_by_tiktoken(content: str, model_name: str = "gpt-4o"):
     tokens = ENCODER.encode(content)
     return tokens
 
-
 def decode_tokens_by_tiktoken(tokens: list[int], model_name: str = "gpt-4o"):
     global ENCODER
     if ENCODER is None:
@@ -151,13 +142,11 @@ def decode_tokens_by_tiktoken(tokens: list[int], model_name: str = "gpt-4o"):
     content = ENCODER.decode(tokens)
     return content
 
-
 def pack_user_ass_to_openai_messages(*args: str):
     roles = ["user", "assistant"]
     return [
         {"role": roles[i % 2], "content": content} for i, content in enumerate(args)
     ]
-
 
 def split_string_by_multi_markers(content: str, markers: list[str]) -> list[str]:
     """Split a string by multiple markers"""
@@ -165,7 +154,6 @@ def split_string_by_multi_markers(content: str, markers: list[str]) -> list[str]
         return [content]
     results = re.split("|".join(re.escape(marker) for marker in markers), content)
     return [r.strip() for r in results if r.strip()]
-
 
 # Refer the utils functions of the official GraphRAG implementation:
 # https://github.com/microsoft/graphrag
@@ -179,10 +167,8 @@ def clean_str(input: Any) -> str:
     # https://stackoverflow.com/questions/4324790/removing-control-characters-from-a-string-in-python
     return re.sub(r"[\x00-\x1f\x7f-\x9f]", "", result)
 
-
 def is_float_regex(value):
     return bool(re.match(r"^[-+]?[0-9]*\.?[0-9]+$", value))
-
 
 def truncate_list_by_token_size(list_data: list, key: callable, max_token_size: int):
     """Truncate a list of data by token size"""
@@ -195,24 +181,20 @@ def truncate_list_by_token_size(list_data: list, key: callable, max_token_size: 
             return list_data[:i]
     return list_data
 
-
 def list_of_list_to_csv(data: List[List[str]]) -> str:
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerows(data)
     return output.getvalue()
 
-
 def csv_string_to_list(csv_string: str) -> List[List[str]]:
     output = io.StringIO(csv_string)
     reader = csv.reader(output)
     return [row for row in reader]
 
-
 def save_data_to_file(data, file_name):
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-
 
 def xml_to_json(xml_file):
     try:
@@ -273,7 +255,6 @@ def xml_to_json(xml_file):
         print(f"An error occurred: {e}")
         return None
 
-
 def process_combine_contexts(hl, ll):
     header = None
     list_hl = csv_string_to_list(hl.strip())
@@ -309,7 +290,6 @@ def process_combine_contexts(hl, ll):
     combined_sources_result = "\n".join(combined_sources_result)
 
     return combined_sources_result
-
 
 async def get_best_cached_response(
     hashing_kv,
@@ -398,14 +378,12 @@ async def get_best_cached_response(
         return best_response
     return None
 
-
 def cosine_similarity(v1, v2):
     """Calculate cosine similarity between two vectors"""
     dot_product = np.dot(v1, v2)
     norm1 = np.linalg.norm(v1)
     norm2 = np.linalg.norm(v2)
     return dot_product / (norm1 * norm2)
-
 
 def quantize_embedding(embedding: np.ndarray, bits=8) -> tuple:
     """Quantize embedding to specified bits"""
@@ -419,14 +397,12 @@ def quantize_embedding(embedding: np.ndarray, bits=8) -> tuple:
 
     return quantized, min_val, max_val
 
-
 def dequantize_embedding(
     quantized: np.ndarray, min_val: float, max_val: float, bits=8
 ) -> np.ndarray:
     """Restore quantized embedding"""
     scale = (max_val - min_val) / (2**bits - 1)
     return (quantized * scale + min_val).astype(np.float32)
-
 
 async def handle_cache(hashing_kv, args_hash, prompt, mode="default"):
     """Generic cache handling function"""
@@ -475,7 +451,6 @@ async def handle_cache(hashing_kv, args_hash, prompt, mode="default"):
 
     return None, quantized, min_val, max_val
 
-
 @dataclass
 class CacheData:
     args_hash: str
@@ -485,7 +460,6 @@ class CacheData:
     min_val: Optional[float] = None
     max_val: Optional[float] = None
     mode: str = "default"
-
 
 async def save_to_cache(hashing_kv, cache_data: CacheData):
     if hashing_kv is None:

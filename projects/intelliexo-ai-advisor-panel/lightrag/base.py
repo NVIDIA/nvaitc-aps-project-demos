@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 from dataclasses import dataclass, field
 from typing import TypedDict, Union, Literal, Generic, TypeVar
 
@@ -11,7 +14,6 @@ TextChunkSchema = TypedDict(
 )
 
 T = TypeVar("T")
-
 
 @dataclass
 class QueryParam:
@@ -31,7 +33,6 @@ class QueryParam:
     # Number of tokens for the entity descriptions
     max_token_for_local_context: int = 4000
 
-
 @dataclass
 class StorageNameSpace:
     namespace: str
@@ -44,7 +45,6 @@ class StorageNameSpace:
     async def query_done_callback(self):
         """commit the storage operations after querying"""
         pass
-
 
 @dataclass
 class BaseVectorStorage(StorageNameSpace):
@@ -59,7 +59,6 @@ class BaseVectorStorage(StorageNameSpace):
         If embedding_func is None, use 'embedding' field from value
         """
         raise NotImplementedError
-
 
 @dataclass
 class BaseKVStorage(Generic[T], StorageNameSpace):
@@ -85,7 +84,6 @@ class BaseKVStorage(Generic[T], StorageNameSpace):
 
     async def drop(self):
         raise NotImplementedError
-
 
 @dataclass
 class BaseGraphStorage(StorageNameSpace):

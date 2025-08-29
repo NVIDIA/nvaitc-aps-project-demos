@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 import os
 from tqdm.asyncio import tqdm as tqdm_async
@@ -54,7 +57,6 @@ from .kg.mongo_impl import MongoKVStorage
 #     GraphStorage as ArangoDBStorage
 # )
 
-
 def always_get_an_event_loop() -> asyncio.AbstractEventLoop:
     """
     Ensure that there is always an event loop available.
@@ -78,7 +80,6 @@ def always_get_an_event_loop() -> asyncio.AbstractEventLoop:
         new_loop = asyncio.new_event_loop()
         asyncio.set_event_loop(new_loop)
         return new_loop
-
 
 @dataclass
 class LightRAG:

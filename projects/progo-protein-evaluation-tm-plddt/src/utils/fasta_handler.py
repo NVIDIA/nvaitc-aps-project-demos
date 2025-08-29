@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """
 FASTA file handling utility for ProteinGO pipeline.
 Provides functions for reading, writing, and validating FASTA files.

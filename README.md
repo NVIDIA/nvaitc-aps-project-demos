@@ -43,7 +43,7 @@ For questions about specific demos, please check the individual project README f
 
 ## License
 
-This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This repository is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 Note: Individual projects may contain third-party dependencies with their own licenses.
 

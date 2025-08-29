@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 from fasthtml.common import *
 from starlette.responses import RedirectResponse
 from starlette.websockets import WebSocketState
@@ -10,7 +13,6 @@ import textwrap
 import shortuuid
 import asyncio
 import sqlite3
-
 
 # Site Map
 # / entry page, redirects to /{uuid} with a fresh uuid
@@ -35,7 +37,6 @@ if chats not in db.t:
     chats.create(id=str, title=str, updated=datetime, pk="id")
 ChatDTO = chats.dataclass()
 
-
 # Patch ChatDTO class with ft renderer and ID initialization
 @patch
 def __ft__(self: ChatDTO):  # type: ignore
@@ -48,17 +49,14 @@ def __ft__(self: ChatDTO):  # type: ignore
         dir="ltr",
     )
 
-
 # FIXME: this patch does not work, requires fixing
 @patch
 def __post_init__(self: ChatDTO):  # type: ignore
     self.id = shortuuid.uuid()
 
-
 # default chat for new chats
 new_chatDTO = ChatDTO()
 new_chatDTO.id = shortuuid.uuid()
-
 
 @dataclass
 class ChatCard:
@@ -104,7 +102,6 @@ class ChatCard:
             ),
         )
 
-
 # FastHTML includes the "HTMX" and "Surreal" libraries in headers, unless you pass `default_hdrs=False`.
 app, rt = fast_app(
     live=True,  # type: ignore
@@ -120,7 +117,6 @@ app, rt = fast_app(
     ),
     ws_hdr=True,  # web socket headers
 )
-
 
 def navigation():
     navigation = Nav(
@@ -208,7 +204,6 @@ def clear_chathistory():
                     onclick="window.location.href='/clear_chathistory';",
                 )
 
-
 def question_list():
     return Details(
         Summary("Your last 25 chats"),
@@ -217,7 +212,6 @@ def question_list():
         cls="dropdown",
         hx_swap_oob="true",
     )
-
 
 def answer_list(chat_id: str):
     # restore message histroy for current thread
@@ -276,7 +270,6 @@ def answer_list(chat_id: str):
         answer_list = Div(id="answer-list")
     return answer_list
 
-
 def model_selector():
     return Details(
         Summary("Model"),
@@ -305,7 +298,6 @@ def model_selector():
         cls="dropdown",
     )
 
-
 @rt("/model")
 async def get(model: str):
     global selected_model
@@ -313,11 +305,9 @@ async def get(model: str):
         selected_model = model
     return model_selector()
 
-
 @rt("/")
 async def get():
     return RedirectResponse(url=f"/chat/{new_chatDTO.id}")
-
 
 @rt("/chat/{id}")
 async def get(id: str):
@@ -353,15 +343,12 @@ async def get(id: str):
     """)
     return Title("Explore!"), css_style, body
 
-
 # WebSocket connection bookkeeping
 ws_connections = {}
-
 
 async def on_connect(send):
     ws_connections[send.args[0].client] = send
     print(f"WS    connect: {send.args[0].client}, total open: {len(ws_connections)}")
-
 
 async def on_disconnect(send):
     global ws_connections
@@ -372,11 +359,9 @@ async def on_disconnect(send):
     }
     print(f"WS disconnect: {send.args[0].client}, total open: {len(ws_connections)}")
 
-
 @app.ws("/ws_connect", conn=on_connect, disconn=on_disconnect)
 async def ws(msg: str, send):
     pass
-
 
 async def update_chat(model: str, card: Card, chat: Any, cleared_inpput, busy_button):
     inputs = {"messages": [("user", card.question)]}    # question is set as the inputs
@@ -431,7 +416,6 @@ def generate_chat(model: str, card: Card, chat: Any, cleared_inpput, busy_button
             new_chatDTO = ChatDTO()
             new_chatDTO.id = shortuuid.uuid()
 
-
 @rt("/chat/{id}")
 async def post(question: str, id: str):
     try:
@@ -466,11 +450,9 @@ async def post(question: str, id: str):
 
     return card, cleared_inpput, busy_button
 
-
 def main():
     print("preparing html server")
     serve()
-
 
 if __name__ == "__main__":
     main()

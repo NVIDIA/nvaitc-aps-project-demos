@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 import os
 from tqdm.asyncio import tqdm as tqdm_async
@@ -7,7 +10,6 @@ from lightrag.utils import logger
 from ..base import BaseVectorStorage
 
 from pymilvus import MilvusClient
-
 
 @dataclass
 class MilvusVectorDBStorge(BaseVectorStorage):

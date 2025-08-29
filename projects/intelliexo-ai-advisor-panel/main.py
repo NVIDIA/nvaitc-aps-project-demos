@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import streamlit as st
 import random
 from lightrag import LightRAG, QueryParam
@@ -64,7 +67,6 @@ with st.sidebar:
 
         if st.button("Cancel"):
             st.session_state.show_persona_selection = False
-
 
 # Navigation setup
 pg = st.navigation({
