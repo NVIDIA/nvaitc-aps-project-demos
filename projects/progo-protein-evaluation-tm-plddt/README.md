@@ -5,15 +5,23 @@ A comprehensive pipeline for protein structure prediction and evaluation using E
 ## Overview
 
 ProGo Protein Evaluation Pipeline is a pipeline that:
-1. Predicts protein structures using ESMfold
-2. Compares predicted structures against ground truth structures using Foldseek
+1. **Predicts protein structures using ESMfold**
+2. **Compares predicted structures against ground truth structures using Foldseek**
 3. **Extracts and analyzes pLDDT confidence scores from predicted structures**
 4. Filters comparisons to statistically significant matches (E-value ≤ 10.0)
 5. Generates detailed comparison reports and structure quality metrics
-6. **Performs comprehensive statistical analysis of both TM-scores and pLDDT confidence**
+6. Performs comprehensive statistical analysis of both TM-scores and pLDDT confidence
 7. Provides scientific interpretation of results
 8. Automatically skips duplicate sequences that match reference sequences
 9. Supports ground-truth-specific reference sequences for targeted duplicate detection
+
+## Showcase: Pipeline Evaluation in Action
+
+![Protein Structure Visualization](assets/Protein_Visualization.gif)
+
+*Visualization generated on [build.nvidia.com](https://build.nvidia.com) using ESMfold predictions. This example demonstrates our pipeline evaluating generated proteins with target functional properties.* 
+
+*The evaluated protein is associated with polyketide/non-ribosomal peptide synthetase (PKS/NRPS) systems, characterized by specific Gene Ontology (GO) terms: **GO:0031177** - Phosphopantetheine binding, **GO:0017000** - Antibiotic biosynthetic process, **GO:0008610** - Lipid biosynthetic process. These are industrially and medically important enzymes that synthesize complex natural products including antibiotics, making this an excellent showcase of functional protein generation and evaluation.* (Fischbach & Walsh, 2006; Beld et al., 2014; Gene Ontology: GO:0031177, GO:0017000, GO:0008610)
 
 ## Requirements
 
@@ -455,14 +463,15 @@ These binaries are automatically detected and used based on your system architec
 ## Contributing
 
 Project By:
-Darren Tan (NVIDIA), Ian McLoughlin (SIT), Aik Beng Ng (NVIDIA), Daniel Wang Zhengkui (SIT), Simon See (NVIDIA)
+Darren Tan (NVIDIA), Ian McLoughlin (SIT), Aik Beng Ng (NVIDIA), Daniel Wang Zhengkui (SIT), Abraham Stern (NVIDIA), Simon See (NVIDIA)
 
 An NVIDIA AI Technology Centre, Asia Pacific South (NVAITC APS) project.
 
 Co-supervised by Singapore Institute of Technology (SIT), a collaboration between NVAITC APS and SIT
 
 ## Updates
-- [2025-08-18] by Darren Tan: Updated README, fixed naming
+- [2024-08-18] by Darren Tan: Updated README, fixed naming
+- [2024-08-19] by Darren Tan: Added showcase visualization demonstrating pipeline evaluation results
 
 ## License
 

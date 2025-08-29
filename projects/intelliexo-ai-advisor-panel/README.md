@@ -2,7 +2,7 @@
 
 IntelliExo is an innovative AI platform that provides personalized advice and insights by simulating conversations with various historical figures, thought leaders, and experts. Using Knowledge Graph RAG technology, each AI advisor maintains the authentic voice, knowledge, and perspective of their real-world counterpart.
 
-## Features 🌟
+## Features
 
 - **Multiple AI Personas**: Interact with various personalities including Lee Kuan Yew, Albert Einstein, Confucius, Daniel Kahneman, and more
 - **Knowledge-Based Responses**: Utilizes LightRAG for accurate information retrieval from persona-specific documents
@@ -13,7 +13,7 @@ IntelliExo is an innovative AI platform that provides personalized advice and in
 - **Customizable AI Advisors**: Create and manage your own custom personas through **"Manage Personas"** page and uploading documents like interview transcripts, biographies, and articles
 
 
-## Technical Stack 🛠️
+## Technical Stack 
 
 - **Framework**: Streamlit
 - **Language Models**: Llama3.1 70B Instruct (via NVIDIA NIMs)
@@ -23,7 +23,7 @@ IntelliExo is an innovative AI platform that provides personalized advice and in
 - **Knowledge Base**: LightRAG (Knowledge Graph RAG) implementation
 - **Pre-requisites**: Python 3.11.8 and above, Streamlit 1.41.1 and above.
 
-## Project Structure 📁
+## Project Structure
 
 ```
 intelliExo/
@@ -41,7 +41,7 @@ intelliExo/
 ├── main.py                # Main Streamlit application
 ```
 
-## Setup 🚀
+## Setup
 
 1. Clone the repository
 2. Install dependencies:
@@ -60,7 +60,7 @@ ELEVENLABS_API_KEY=your_elevenlabs_api_key
 streamlit run main.py
 ```
 
-## Usage 💡
+## Usage
 
 1. Fill in your user profile information to personalize the experience
 1. Select one or more AI advisors from the available personas

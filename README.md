@@ -1,19 +1,8 @@
 # NVAITC APS Project Demos and Examples
 
-This repository, maintained by NVIDIA AI Technology Center - Asia Pacific South (NVAITC APS), gathers clear, runnable demos of projects that apply NVIDIA technology to real research and industry needs. It showcases collaborative projects with educational institutions and partners, providing one place to browse, clone, and reuse working examples. Each project folder contains:
+This repository, maintained by NVIDIA AI Technology Center - Asia Pacific South (NVAITC APS), gathers clear, runnable demos of projects that apply NVIDIA technology to real research and industry needs. It showcases collaborative projects with educational institutions and partners, providing one place to browse, clone, and reuse working examples.
 
-- A comprehensive README with project overview and setup instructions
-- Hardware and software requirements clearly documented
-- Expected results and performance metrics
-
-The collection covers work done by NVAITC APS teams and collaborative projects with universities, student ambassadors, and industry partners across the Asia Pacific South region.
-
-## How to Use This Repo
-
-1. **Pick a project** that matches your interest
-2. **Follow the README** to launch the demo on the required compute
-3. **Study the concise notes** on design choices and performance tuning
-4. **Fork or clone** the code into your own workspace and adapt it
+The collection covers work done by NVAITC APS teams and/or collaborative projects with universities, and industry partners across the Asia Pacific South region.
 
 ## Repository Structure
 
