@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import os
 import networkx as nx
 import streamlit as st
@@ -60,7 +63,6 @@ def graphml_to_elements(graphml_path: str) -> dict:
         })
 
     return elements
-
 
 def main():
 
@@ -144,7 +146,6 @@ def main():
                 # Add default style for any undefined relationships
                 edge_styles.append(EdgeStyle("DEFAULT", labeled=True, directed=True))
 
-
                 # Render the graph using st_link_analysis
                 st.markdown(f"### Knowledge Graph for **{persona_choice}**")
                 st_link_analysis(
@@ -159,6 +160,5 @@ def main():
                 st.error(f"An error occurred while processing the graph: {e}")
         else:
             st.error(f"No `.graphml` file found for the selected persona: `{persona_choice}`. Try running a query on chat page with the persona first to begin knowledge indexing!")
-
 
 main()

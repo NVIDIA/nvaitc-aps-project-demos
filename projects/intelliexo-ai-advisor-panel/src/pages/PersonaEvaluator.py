@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import streamlit as st
 import os
 import json
@@ -11,12 +14,10 @@ from src.pages.Chat import (
 import textwrap
 from src.pages.PersonaManager import load_personas
 
-
 ### APP / PAGE CONFIGURATIONS ###
 load_dotenv()
 nvidia_api_key = os.getenv('NVIDIA_API_KEY')
 model = "nvdev/mistralai/mistral-7b-instruct-v0.3" # Other models tried: "nvdev/meta/llama3-70b-instruct", "deepseek-ai/deepseek-r1-distill-qwen-7b", "qwen/qwen2.5-7b-instruct", "google/gemma-2-9b-it", "nvdev/google/gemma-2-9b-it"
-
 
 def evaluate_responses_ranking(responses, persona_name, persona_prompt):
     """
@@ -172,7 +173,6 @@ def evaluate_character_utterance(response, persona_name, persona_prompt):
 
     return score, eval_response.content
 
-
 # If your existing code has references to these:
 q1 = "How do you think I can improve my leadership abilities?"
 q2 = "How do you approach problem-solving?"
@@ -195,7 +195,6 @@ q18 = "What are the qualities of a great leader, and how can I cultivate them?"
 q19 = "What should I focus on in my 20s, 30s, and beyond to live a fulfilling life?"
 q20 = "What is the most important lesson you've learned in life?"
 QUESTIONS = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20]
-
 
 def persona_evaluation_page():
     """

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 
 # import html
@@ -15,7 +18,6 @@ from ..base import (
 )
 
 import oracledb
-
 
 class OracleDB:
     def __init__(self, config, **kwargs):
@@ -163,7 +165,6 @@ class OracleDB:
             print(data)
             raise
 
-
 @dataclass
 class OracleKVStorage(BaseKVStorage):
     # should pass db object to self.db
@@ -284,7 +285,6 @@ class OracleKVStorage(BaseKVStorage):
         if self.namespace in ["full_docs", "text_chunks"]:
             logger.info("full doc and chunk data had been saved into oracle db!")
 
-
 @dataclass
 class OracleVectorDBStorage(BaseVectorStorage):
     cosine_better_than_threshold: float = 0.2
@@ -320,7 +320,6 @@ class OracleVectorDBStorage(BaseVectorStorage):
         results = await self.db.query(SQL, params=params, multirows=True)
         # print("vector search result:",results)
         return results
-
 
 @dataclass
 class OracleGraphStorage(BaseGraphStorage):
@@ -552,7 +551,6 @@ class OracleGraphStorage(BaseGraphStorage):
         if res:
             return res
 
-
 N_T = {
     "full_docs": "LIGHTRAG_DOC_FULL",
     "text_chunks": "LIGHTRAG_DOC_CHUNKS",
@@ -642,7 +640,6 @@ TABLES = {
                 ) OPTIONS(ALLOW MIXED PROPERTY TYPES)"""
     },
 }
-
 
 SQL_TEMPLATES = {
     # SQL for KVStorage

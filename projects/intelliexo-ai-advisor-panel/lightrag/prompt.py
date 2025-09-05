@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 GRAPH_FIELD_SEP = "<SEP>"
 
 PROMPTS = {}
@@ -157,7 +160,6 @@ PROMPTS["rag_response"] = """---Role---
 
 You are a helpful assistant responding to questions about data in the tables provided.
 
-
 ---Goal---
 
 Generate a response of the target length and format that responds to the user's question, summarizing all information in the input data tables appropriate for the response length and format, and incorporating any relevant general knowledge.
@@ -239,11 +241,9 @@ Output:
 #############################""",
 ]
 
-
 PROMPTS["naive_rag_response"] = """---Role---
 
 You are a helpful assistant responding to questions about documents provided.
-
 
 ---Goal---
 

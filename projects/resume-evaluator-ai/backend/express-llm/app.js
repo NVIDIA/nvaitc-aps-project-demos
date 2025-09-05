@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 const express = require('express');
 const llmChatRoutes = require('./routes.js');
 const cors = require('cors');

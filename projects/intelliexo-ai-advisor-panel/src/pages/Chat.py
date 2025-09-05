@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from dotenv import load_dotenv
 import streamlit as st
@@ -48,7 +51,6 @@ def get_summary(user_input):
     )
     return response.content
 
-
 def text_to_speech(text, persona_name):
     """Convert text to speech using ElevenLabs with persona-specific voice"""
     with st.spinner(f"Converting text to speech..."):
@@ -63,7 +65,6 @@ def text_to_speech(text, persona_name):
         # Convert generator to bytes
         audio_bytes = b"".join(audio_generator)
         return audio_bytes
-
 
 def construct_prompt(user_input, conversation_history, persona_name):
     conversation = f'role: assistant\ncontent: {get_persona_prompt(persona_name)}\n'
@@ -140,7 +141,6 @@ def get_response(user_input, conversation_history, persona_name, base_model=Fals
 
     return response, []
 
-
 # Handle user input and generate responses
 def ask_question(question, respondents):
     st.session_state.question_counter += 1  # Increment counter for each new question
@@ -160,7 +160,6 @@ if 'chat_input' not in st.session_state:
 
 def set_chat_input(question):
     st.session_state.chat_input = question
-
 
 if not ("chat_variables" in st.session_state and "num_personas" in st.session_state.chat_variables and st.session_state.chat_variables["num_personas"] > 0):
     # Display a message to select personas
@@ -276,5 +275,4 @@ else:
     if summary and st.button(f"🔊 Play Summary", key=f"play_summary_{str(time.time())}"):
         audio = text_to_speech(summary, f"Base Model: {model}")
         st.audio(audio, format='audio/mp3')
-
 

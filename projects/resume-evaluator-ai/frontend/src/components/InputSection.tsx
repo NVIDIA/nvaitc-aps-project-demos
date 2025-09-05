@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 import React, { useEffect, useState } from 'react';
 import pdfToText from 'react-pdftotext';
 import TextareaAutosize from '@mui/material/TextareaAutosize';

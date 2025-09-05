@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import os
 from tqdm.asyncio import tqdm as tqdm_async
 from dataclasses import dataclass
@@ -6,7 +9,6 @@ from pymongo import MongoClient
 from lightrag.utils import logger
 
 from lightrag.base import BaseKVStorage
-
 
 @dataclass
 class MongoKVStorage(BaseKVStorage):

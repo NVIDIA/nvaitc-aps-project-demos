@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """
 pLDDT extraction module for ESMfold predicted structures.
 Extracts confidence scores from PDB files and calculates sequence-level statistics.

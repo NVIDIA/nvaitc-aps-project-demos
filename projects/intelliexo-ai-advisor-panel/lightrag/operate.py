@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 import json
 import re
@@ -31,7 +34,6 @@ from .base import (
 )
 from .prompt import GRAPH_FIELD_SEP, PROMPTS
 
-
 def chunking_by_token_size(
     content: str, overlap_token_size=128, max_token_size=1024, tiktoken_model="gpt-4o"
 ):
@@ -51,7 +53,6 @@ def chunking_by_token_size(
             }
         )
     return results
-
 
 async def _handle_entity_relation_summary(
     entity_or_relation_name: str,
@@ -83,7 +84,6 @@ async def _handle_entity_relation_summary(
     summary = await use_llm_func(use_prompt, max_tokens=summary_max_tokens)
     return summary
 
-
 async def _handle_single_entity_extraction(
     record_attributes: list[str],
     chunk_key: str,
@@ -103,7 +103,6 @@ async def _handle_single_entity_extraction(
         description=entity_description,
         source_id=entity_source_id,
     )
-
 
 async def _handle_single_relationship_extraction(
     record_attributes: list[str],
@@ -129,7 +128,6 @@ async def _handle_single_relationship_extraction(
         keywords=edge_keywords,
         source_id=edge_source_id,
     )
-
 
 async def _merge_nodes_then_upsert(
     entity_name: str,
@@ -176,7 +174,6 @@ async def _merge_nodes_then_upsert(
     )
     node_data["entity_name"] = entity_name
     return node_data
-
 
 async def _merge_edges_then_upsert(
     src_id: str,
@@ -243,7 +240,6 @@ async def _merge_edges_then_upsert(
     )
 
     return edge_data
-
 
 async def extract_entities(
     chunks: dict[str, TextChunkSchema],
@@ -447,7 +443,6 @@ async def extract_entities(
 
     return knowledge_graph_inst
 
-
 async def kg_query(
     query,
     knowledge_graph_inst: BaseGraphStorage,
@@ -575,7 +570,6 @@ async def kg_query(
 
     return response
 
-
 async def _build_query_context(
     query: list,
     knowledge_graph_inst: BaseGraphStorage,
@@ -664,7 +658,6 @@ async def _build_query_context(
 ```
 """
 
-
 async def _get_node_data(
     query,
     knowledge_graph_inst: BaseGraphStorage,
@@ -741,7 +734,6 @@ async def _get_node_data(
     text_units_context = list_of_list_to_csv(text_units_section_list)
     return entities_context, relations_context, text_units_context
 
-
 async def _find_most_related_text_unit_from_entities(
     node_datas: list[dict],
     query_param: QueryParam,
@@ -815,7 +807,6 @@ async def _find_most_related_text_unit_from_entities(
     all_text_units = [t["data"] for t in all_text_units]
     return all_text_units
 
-
 async def _find_most_related_edges_from_entities(
     node_datas: list[dict],
     query_param: QueryParam,
@@ -854,7 +845,6 @@ async def _find_most_related_edges_from_entities(
         max_token_size=query_param.max_token_for_global_context,
     )
     return all_edges_data
-
 
 async def _get_edge_data(
     keywords,
@@ -937,7 +927,6 @@ async def _get_edge_data(
     text_units_context = list_of_list_to_csv(text_units_section_list)
     return entities_context, relations_context, text_units_context
 
-
 async def _find_most_related_entities_from_relationships(
     edge_datas: list[dict],
     query_param: QueryParam,
@@ -974,7 +963,6 @@ async def _find_most_related_entities_from_relationships(
 
     return node_datas
 
-
 async def _find_related_text_unit_from_relationships(
     edge_datas: list[dict],
     query_param: QueryParam,
@@ -1010,7 +998,6 @@ async def _find_related_text_unit_from_relationships(
 
     return all_text_units
 
-
 def combine_contexts(entities, relationships, sources):
     # Function to extract entities, relationships, and sources from context strings
     hl_entities, ll_entities = entities[0], entities[1]
@@ -1028,7 +1015,6 @@ def combine_contexts(entities, relationships, sources):
     combined_sources = process_combine_contexts(hl_sources, ll_sources)
 
     return combined_entities, combined_relationships, combined_sources
-
 
 async def naive_query(
     query,

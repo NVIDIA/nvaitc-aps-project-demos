@@ -13,6 +13,8 @@ nvaitc-aps-project-demos/
 │   ├── progo-protein-evaluation-tm-plddt/ # Protein structure prediction and evaluation
 │   ├── explorer-ai/                     # Curiosity-driven AI agent platform
 │   └── resume-evaluator-ai/             # Intelligent resume screening platform
+├── workshops/                            # Workshop materials and tutorials
+│   └── NIM-build-tune-deploy/           # NVIDIA NIM workshop for building, tuning, and deploying models
 ├── .gitignore                            # Git ignore file
 └── README.md                             # This file
 ```
@@ -24,13 +26,24 @@ nvaitc-aps-project-demos/
 - **Explorer AI**: Curiosity-driven agent platform demonstrating ReAct architecture with web search integration and persistent memory using NIMs
 - **Resume Evaluator AI**: Full-stack application for intelligent resume screening and candidate evaluation, leveraging Llama 3.1 405B model running on NIMs for HR automation
 
+## Workshops
+
+The workshops folder contains hands-on tutorials and training materials for learning NVIDIA technologies:
+
+- **NIM-build-tune-deploy**: Comprehensive workshop covering NVIDIA NIM (NVIDIA Inference Microservices) deployment, including:
+  - Workshop setup and environment configuration
+  - NIM API tutorials
+  - Local NIM deployment
+  - LoRA training with NeMo
+  - Deploying LoRA models with NIM
+
 ## Support
 
 For questions about specific demos, please check the individual project README files first. For general repository questions, open an issue in this repository.
 
 ## License
 
-This repository is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This repository is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 Note: Individual projects may contain third-party dependencies with their own licenses.
 

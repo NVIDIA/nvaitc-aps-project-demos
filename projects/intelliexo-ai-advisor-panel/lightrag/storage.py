@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 import asyncio
 import html
 import os
@@ -20,7 +23,6 @@ from .base import (
     BaseKVStorage,
     BaseVectorStorage,
 )
-
 
 @dataclass
 class JsonKVStorage(BaseKVStorage):
@@ -61,7 +63,6 @@ class JsonKVStorage(BaseKVStorage):
 
     async def drop(self):
         self._data = {}
-
 
 @dataclass
 class NanoVectorDBStorage(BaseVectorStorage):
@@ -164,7 +165,6 @@ class NanoVectorDBStorage(BaseVectorStorage):
 
     async def index_done_callback(self):
         self._client.save()
-
 
 @dataclass
 class NetworkXStorage(BaseGraphStorage):
