@@ -1,4 +1,4 @@
-# NVAITC APS Project Demos and Examples
+# NVAITC APS 
 
 This repository, maintained by NVIDIA AI Technology Center - Asia Pacific South (NVAITC APS), gathers clear, runnable demos of projects that apply NVIDIA technology to real research and industry needs. It showcases collaborative projects with educational institutions and partners, providing one place to browse, clone, and reuse working examples.
 
@@ -28,14 +28,8 @@ nvaitc-aps-project-demos/
 
 ## Workshops
 
-The workshops folder contains hands-on tutorials and training materials for learning NVIDIA technologies:
-
-- **NIM-build-tune-deploy**: Comprehensive workshop covering NVIDIA NIM (NVIDIA Inference Microservices) deployment, including:
+- **NIM-build-tune-deploy**: Comprehensive workshop covering NVIDIA NIM (NVIDIA Inference Microservices) deployment, including (1) NIM API tutorials, (2) Local NIM deployment, (3) LoRA training with NeMo, (4) Deploying LoRA models with NIM
   - Workshop setup and environment configuration
-  - NIM API tutorials
-  - Local NIM deployment
-  - LoRA training with NeMo
-  - Deploying LoRA models with NIM
 
 ## Support
 
